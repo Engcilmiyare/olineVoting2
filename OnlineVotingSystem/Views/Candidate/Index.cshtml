@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OnlineVotingSystem.Models.Candidate>
+@{
+}
+<h2>Candidate List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Tell</th>
+            <th>Birth Date</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var candidate in Model)
+        {
+            <tr>
+                <td>@candidate.Name</td>
+                <td>@candidate.Tell</td>
+                <td>@candidate.BirthDate.ToShortDateString()</td>
+                <td>@candidate.Address</td>
+                <td>@candidate.Gender</td>
+                <td>@candidate.Title</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@candidate.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@candidate.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@candidate.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Add New Candidate</a>

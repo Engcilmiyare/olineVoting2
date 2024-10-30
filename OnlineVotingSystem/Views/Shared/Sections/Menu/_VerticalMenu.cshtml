@@ -1,0 +1,62 @@
+@{
+    TempData.Keep();
+
+    string? currentPage = ViewContext.HttpContext.Request.Path;
+}
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+
+    <div class='app-brand demo @((@ViewData["navbarFull"] != null && Convert.ToBoolean(@ViewData["navbarFull"])) ? "d-xl-none" : "")'>
+        <a asp-controller="Dashboards" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-logo demo">
+                @await Html.PartialAsync("../_Partials/_Macros")
+            </span>
+            <span class="app-brand-text demo menu-text fw-bold ms-2">@TempData.Peek("appName")</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm d-flex align-items-center justify-content-center"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+
+        <li class='menu-item@(currentPage.StartsWith("/Dashboards/") ? " active open" : "")'>
+            <a asp-controller="Dashboards" asp-action="Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-smile"></i>
+                <div class="text-truncate" data-i18n="Dashboards">Dashboard</div>
+            </a>
+        </li>
+
+        <li class='menu-item@(currentPage.StartsWith("/Election/") ? " active open" : "")'>
+            <a asp-controller="Election" asp-action="Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-check-shield"></i>
+                <div class="text-truncate" data-i18n="Election">Election</div>
+            </a>
+        </li>
+
+        <li class='menu-item@(currentPage.StartsWith("/Candidate/") ? " active open" : "")'>
+            <a asp-controller="Candidate" asp-action="Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-id-card"></i>
+                <div class="text-truncate" data-i18n="Candidate">Candidate</div>
+            </a>
+        </li>
+
+        <li class='menu-item@(currentPage.StartsWith("/Users/") ? " active open" : "")'>
+            <a asp-controller="Users" asp-action="Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div class="text-truncate" data-i18n="Users">Users</div>
+            </a>
+        </li>
+
+        <li class='menu-item@(currentPage.StartsWith("/Vote/") ? " active open" : "")'>
+            <a asp-controller="Vote" asp-action="Index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-check-square"></i>
+                <div class="text-truncate" data-i18n="Vote">Vote</div>
+            </a>
+        </li>
+
+    </ul>
+</aside>

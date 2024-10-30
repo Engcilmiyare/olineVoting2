@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OnlineVotingSystem.Models.Election>
+@{
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var election in Model)
+        {
+            <tr>
+                <td>@election.Id</td>
+                <td>@election.Title</td>
+                <td>@election.StartDate.ToShortDateString()</td>
+                <td>@election.EndDate.ToShortDateString()</td>
+                <td>@election.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@election.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@election.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@election.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Add" class="btn btn-primary">Add New Election</a>
